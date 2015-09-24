@@ -235,6 +235,15 @@ class Stream implements StreamInterface
     {
         return $this->readable ? fread($this->stream, $length) : false;
     }
+ 
+    public function readLine($maxLength = null) 
+    {
+        if (!$this->readable) {
+            return false;
+        } else {
+            return $maxLength ? fgets($this->stream, $maxLength) : fgets($this->stream);
+        }
+    }
 
     public function write($string)
     {
